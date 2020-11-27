@@ -225,14 +225,159 @@ namespace ConsoleApp3
             if (i_ <= i6) Console.Write("{0} = {1} × {1} は平方数です\n", i6, i_);
             else Console.Write("{0} は平方数ではありません\n", i6);
 
-            */
+
+            Console.WriteLine("【反復処理　問題3】");
+            int[,] Kuku = new int[10, 10];
+            for (int i = 1; i <= 9; i++)
+            {
+                for (int j = 1; j <= 9; j++)
+                {
+                    Kuku[i, j] = j * i;
+                    if (j == 9)
+                    {
+//                        Console.Write(i + " x " + j + " =");
+                        Console.WriteLine(" {0,2}", Kuku[i, j]);
+                    }
+                    else
+                    {
+//                        Console.Write(i + " x " + j + " =");
+                        Console.Write(" {0,2}   ", Kuku[i, j]);
+                    }
+                }
+            }
+
+            Console.WriteLine("【配列　問題1】");
+            int[] a = new int[21];
+            a[0] = 3;
+            a[1] = 1;
+            for (int i = 2; i < a.Length; ++i)
+            {
+                a[i] = 2 * a[i - 1] - 2 * a[i - 2];
+            }
+            for (int i = 0; i < a.Length; ++i)
+            {
+                Console.WriteLine("{0} ", a[i]);
+            }
+            Console.Write('\n');
 
 
+            Console.WriteLine("【配列　問題2】");
+            Console.Write("配列の長さを入力してください: ");
+            int i71 = int.Parse(Console.ReadLine());
+            int[] a2 = new int[i71];
+            Console.WriteLine("{0} 個の整数値を入力してください: ", i71);
+            for (int i = 0; i < i71; ++i)
+            {
+                Console.Write("{0}/{1}回目：", i + 1, i71);
+                int i72 = int.Parse(Console.ReadLine());
+                a2[i] = i72;
+            }
+            Console.WriteLine("平均値：{0}", a2.Average());
+            Console.WriteLine("最大値：{0}", a2.Max());
+            Console.WriteLine("最小値：{0}", a2.Min());
+
+
+            Console.WriteLine("【配列　問題3】");
+            double[,] a = new double[,]
+            {
+                {1, 2},
+                {3, 4},
+            };
+            double[,] b = new double[,]
+            {
+                {10, 20},
+                {30, 40},
+            };
+            double[,] c = new double[a.GetLength(0), b.GetLength(1)];
+            for (int i = 0; i < a.GetLength(0); ++i)
+                for (int j = 0; j < b.GetLength(1); ++j)
+//                    for (int k = 0; k < a.GetLength(1); ++k)
+//                        c[i, j] = a[i, k] * b[k, j];
+                        c[i, j] = a[i, j] * b[i, j];
+            Console.Write("a =\n");
+            for (int i = 0; i < a.GetLength(0); ++i)
+            {
+                for (int j = 0; j < a.GetLength(1); ++j)
+                    Console.Write("{0, 4} ", a[i, j]);
+                Console.Write('\n');
+            }
+            Console.Write("b =\n");
+            for (int i = 0; i < b.GetLength(0); ++i)
+            {
+                for (int j = 0; j < b.GetLength(1); ++j)
+                    Console.Write("{0, 4} ", b[i, j]);
+                Console.Write('\n');
+            }
+            Console.Write("a×b =\n");
+            for (int i = 0; i < c.GetLength(0); ++i)
+            {
+                for (int j = 0; j < c.GetLength(1); ++j)
+                    Console.Write("{0, 4} ", c[i, j]);
+                Console.Write('\n');
+            }
+
+            Console.WriteLine("【関数　問題1】");
+            Console.Write("配列の長さを入力してください: ");
+            int i73 = int.Parse(Console.ReadLine());
+            int[] a3 = new int[i73];
+            Console.WriteLine("{0} 個の整数値を入力してください: ", i73);
+            for (int i = 0; i < i73; ++i)
+            {
+                Console.Write("{0}/{1}回目：", i + 1, i73);
+                int i74 = int.Parse(Console.ReadLine());
+                a3[i] = i74;
+            }
+            Console.Write("最大値: {0}  最小値: {1}  平均値: {2}" , sMax(a3), sMin(a3), sAverage(a3));
+
+*/
 
             Console.ReadKey();
 
 
 
+        }
+        /// <summary>
+        /// 配列中の値の最大値を求める。
+        /// </summary>
+        /// <param name="a">対象の配列</param>
+        /// <returns>最大値</returns>
+        static int sMax(int[] a)
+        {
+            int max = int.MinValue;
+            for (int i = 0; i < a.Length; ++i)
+            {
+                if (max < a[i]) max = a[i];
+            }
+            return max;
+        }
+        /// <summary>
+        /// 配列中の値の最小値を求める。
+        /// </summary>
+        /// <param name="a">対象の配列</param>
+        /// <returns>最小値</returns>
+        static int sMin(int[] a)
+        {
+            int min = int.MaxValue;
+            for (int i = 0; i < a.Length; ++i)
+            {
+                if (min > a[i]) min = a[i];
+            }
+            return min;
+        }
+        /// <summary>
+        /// 配列中の値の平均値を求める。
+        /// </summary>
+        /// <param name="a">対象の配列</param>
+        /// <returns>平均値</returns>
+        static double sAverage(int[] a)
+        {
+            double avg = 0;
+            int i;
+            for (i = 0; i < a.Length; ++i)
+            {
+                avg += a[i];
+            }
+            return avg / a.Length;
         }
 
 
